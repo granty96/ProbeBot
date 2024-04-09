@@ -1,0 +1,5 @@
+1- Pass
+2- Crashed
+3- Dirty
+4 - Bad Etch
+5 - Bad Angle
