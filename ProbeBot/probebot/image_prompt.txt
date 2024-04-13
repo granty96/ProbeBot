@@ -3,3 +3,4 @@
 3- Dirty
 4 - Bad Etch
 5 - Bad Angle
+6 - Detached

@@ -6,13 +6,18 @@ authors = ["jamesdonaldson <jamesgdonaldson88@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.12"
 opencv-python = "^4.9.0.80"
 matplotlib = "^3.8.4"
 scikit-image = "^0.22.0"
 scikit-learn = "^1.4.1.post1"
 pytesseract = "^0.3.10"
 scipy = "^1.13.0"
+tensorflow-io-gcs-filesystem = "0.31.0"
+tensorflow = "^2.16.1"
+nvidia-pyindex = "^1.0.9"
+torch = "^2.2.2"
+cuda-python = "^12.4.0"
 
 
 [tool.poetry.group.dev.dependencies]
