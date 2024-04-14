@@ -14,9 +14,10 @@ app = FastAPI(
 app.include_router(bot_router)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000"],
+    allow_origins=["http://127.0.0.1:8000"],
     allow_methods=["*"],
     allow_headers=["*"],
+    allow_credentials=True,
 )
 
 
@@ -33,7 +34,6 @@ def handle_measurement_error(
             "detail": {
                 "type": "measurement_error",
                 "message": "The given probe image could not be processed.\n Please ensure that the input probe orientation is correct and the probe tip is not slanted.",
-                "exception": exception,
             }
         },
     )

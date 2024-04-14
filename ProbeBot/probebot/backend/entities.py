@@ -5,6 +5,7 @@ from pydantic import (
     BeforeValidator,
     PlainSerializer,
 )
+import json
 from typing_extensions import Annotated
 import numpy as np
 
@@ -14,7 +15,7 @@ def nd_array_custom_before_validator(x):
 
 
 def nd_array_custom_serializer(x):
-    return str(x)
+    return json.dumps(x.tolist())
 
 
 NdArray = Annotated[

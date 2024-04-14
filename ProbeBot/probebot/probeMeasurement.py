@@ -13,7 +13,8 @@ right_fit_degree = 2
 
 
 class MeasurementErrorException(Exception):
-    def __init__(self):
+    def __init__(self, exception: BaseException):
+        self.exception = exception
         pass
 
 
@@ -43,7 +44,7 @@ def measureTip(orientation):
         image = cv2.imread("backend/temp/temp.tif")
 
         if image is None:
-            raise ("Image not found")
+            raise Exception("Image not found")
 
         scale = __extract_magnification(image)
 
@@ -95,7 +96,7 @@ def measureTip(orientation):
                     roi, (i, int(approximationFunction(i))), 2, (255, 255, 0), -1
                 )
             except:
-                raise (
+                raise Exception(
                     f"Error displaying approximation function @ ({i}, {str(int(approximationFunction(i)))})"
                 )
 
@@ -232,14 +233,13 @@ def measureTip(orientation):
 
         roiFinal = np.concatenate((roi, roiCopy), axis=1)
 
+        h, w = roiFinal.shape[:2]
+        aspectRation = w / h
+
+        roiFinal = cv2.resize(roiFinal, (800, 500))
+
         # return image and measurement
         return (roiFinal, result)
     except BaseException as e:
+        print(e)
         raise MeasurementErrorException(e)
-
-
-# image, result = measureTip("down")
-
-# cv2.imshow(result, image)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
