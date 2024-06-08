@@ -4,6 +4,7 @@ import pytesseract
 from matplotlib import *
 import re
 import warnings
+import traceback
 
 batchNumber = "4955"
 
@@ -41,7 +42,7 @@ def measureTip(orientation):
     warnings.simplefilter("ignore", np.RankWarning)
 
     try:
-        image = cv2.imread("backend/temp/temp.tif")
+        image = cv2.imread("probebot/backend/temp/temp.tif")
 
         if image is None:
             raise Exception("Image not found")
@@ -241,5 +242,5 @@ def measureTip(orientation):
         # return image and measurement
         return (roiFinal, result)
     except BaseException as e:
-        print(e)
+        print(traceback.format_exc())
         raise MeasurementErrorException(e)

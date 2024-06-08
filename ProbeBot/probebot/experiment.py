@@ -2,9 +2,8 @@ import os
 import cv2
 import numpy as np
 
-print(f"directory : {os.getcwd()}")
 # Load the TIFF image
-image = cv2.imread('probebot/images/3630_006.tif', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread("probebot/images/3630_006.tif", cv2.IMREAD_GRAYSCALE)
 
 # Define the region of interest (ROI) to exclude the bottom info bar
 roi = image[:-50, :]
@@ -39,20 +38,24 @@ pt1 = sorted_vertices[0]
 
 for vertex in sorted_vertices:
     print(vertex[0] - pt1[0])
-    if(vertex[0] - pt1[0] > 5):
+    if vertex[0] - pt1[0] > 5:
         pt2 = vertex
         break
-    
+
 print(sorted_vertices)
 
 # Draw the lines connecting the selected vertices on the image
-line_image = cv2.cvtColor(roi, cv2.COLOR_GRAY2BGR)  # Convert to color image for visualization
-cv2.line(line_image, tuple(pt1), tuple(pt2), (0, 255, 0), thickness=2)  # Draw the line in green with thickness 2
+line_image = cv2.cvtColor(
+    roi, cv2.COLOR_GRAY2BGR
+)  # Convert to color image for visualization
+cv2.line(
+    line_image, tuple(pt1), tuple(pt2), (0, 255, 0), thickness=2
+)  # Draw the line in green with thickness 2
 # cv2.line(line_image, tuple(pt1), tuple(pt3), (255, 0, 0), thickness=2)
 # cv2.line(line_image, tuple(pt1), tuple(pt4), (0,0,255), thickness=2)
 
 # Display the image with the drawn lines
-cv2.imshow('Image with Lines (Probe Tip)', line_image)
+cv2.imshow("Image with Lines (Probe Tip)", line_image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 

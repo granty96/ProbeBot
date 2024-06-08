@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from probebot.backend.routers import bot_router
-from probeMeasurement import MeasurementErrorException
+from probebot.probeMeasurement import MeasurementErrorException
 
 app = FastAPI(
     title="Probe Bot",

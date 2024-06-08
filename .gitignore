@@ -1,1 +1,5 @@
 probebot/backend/__pycache__/*
+ProbeBot/probebot/backend/temp/temp.tif
+*.tif
+*.pyc
+temp.tif

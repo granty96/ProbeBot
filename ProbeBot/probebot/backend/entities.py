@@ -28,5 +28,7 @@ NdArray = Annotated[
 class MeasurementResponse(BaseModel):
     radius: str
     image: NdArray
-
+    confidence: str
+    prediction: str
+    error: str
     model_config = ConfigDict(arbitrary_types_allowed=True)
