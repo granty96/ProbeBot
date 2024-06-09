@@ -49,4 +49,4 @@ def predict():
     print(
         f"{class_names[index.item()]} with {percentage(confidence.item(), 3)} confidence"
     )
-    return [class_names[index.item()], percentage(confidence.item(), 3)]
+    return [class_names[index.item()], confidence.item()]

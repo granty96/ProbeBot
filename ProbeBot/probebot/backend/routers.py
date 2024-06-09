@@ -2,6 +2,7 @@ from fastapi import APIRouter, File, UploadFile, Request
 from probebot.probeMeasurement import measureTip
 from probebot.backend.entities import MeasurementResponse
 from probebot.loadModelTorch import predict
+from probebot.loadModelTorch import percentage
 import logging
 import traceback
 import numpy as np
@@ -37,6 +38,21 @@ async def measure_image(orientation: str, image: UploadFile = File(...)):
             f.write(contents)
 
         prediction = predict()
+
+        print(prediction)
+        print(str(percentage(prediction[1], 3)))
+
+        if prediction[0] != "Pass" or prediction[1] < 0.95:
+            return MeasurementResponse(
+                image=cv2.resize(
+                    cv2.imread("probebot/backend/temp/temp.tif"), (800, 500)
+                ),
+                radius="",
+                error="",
+                prediction=prediction[0],
+                confidence=str(percentage(prediction[1], 3)),
+            )
+
         measurement = measureTip(orientation)
 
         return MeasurementResponse(
